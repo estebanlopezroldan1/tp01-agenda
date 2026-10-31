@@ -178,3 +178,5 @@ formularioEvento.addEventListener("submit", function(eventoFormulario) {
 actualizarSelectContactos();
 mostrarContactos();
 mostrarEventos();
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2F80ED">
