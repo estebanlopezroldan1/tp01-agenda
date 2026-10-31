@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Agenda</title>
+    <!-- Enlace a la hoja de estilos -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Encabezado principal de la aplicación -->
+    <header id="encabezadoPrincipal">
+        <h1 id="tituloApp">Mi Agenda</h1>
+        
+        <!-- Contenedor para acciones generales -->
+        <div id="contenedorAcciones">
+            <!-- Buscador general para filtrar contactos y eventos -->
+            <input type="search" id="buscadorGeneral" placeholder="Buscar...">
+            
+            <!-- Botones para exportar e importar datos -->
+            <button id="botonExportar" type="button">Exportar</button>
+            <button id="botonImportar" type="button">Importar</button>
+            <!-- Input oculto que usará el botón Importar -->
+            <input type="file" id="inputArchivoImportar" accept=".json" hidden>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main id="contenidoPrincipal">
+
+        <!-- SECCIÓN 1: CONTACTOS -->
+        <section id="seccionContactos">
+            <h2>Contactos</h2>
+
+            <!-- Formulario para crear contactos -->
+            <form id="formularioContacto">
+                <label for="inputNombreContacto">Nombre:</label>
+                <input type="text" id="inputNombreContacto" required>
+
+                <label for="inputTelefonoContacto">Teléfono:</label>
+                <input type="tel" id="inputTelefonoContacto">
+
+                <label for="inputEmailContacto">Email:</label>
+                <input type="email" id="inputEmailContacto">
+
+                <label for="inputNotasContacto">Notas:</label>
+                <textarea id="inputNotasContacto"></textarea>
+
+                <button type="submit" id="botonGuardarContacto">Guardar Contacto</button>
+            </form>
+
+            <!-- Contenedor vacío donde JS va a dibujar la lista de contactos -->
+            <div id="listaContactos"></div>
+        </section>
+
+        <!-- SECCIÓN 2: EVENTOS -->
+        <section id="seccionEventos">
+            <h2>Eventos</h2>
+
+            <!-- Formulario para crear eventos -->
+            <form id="formularioEvento">
+                <label for="inputTituloEvento">Título:</label>
+                <input type="text" id="inputTituloEvento" required>
+
+                <label for="inputFechaEvento">Fecha:</label>
+                <input type="date" id="inputFechaEvento" required>
+
+                <label for="inputHoraEvento">Hora:</label>
+                <input type="time" id="inputHoraEvento">
+
+                <label for="inputLugarEvento">Lugar:</label>
+                <input type="text" id="inputLugarEvento">
+
+                <label for="selectContactoEvento">Contacto asociado:</label>
+                <!-- Select que se llenará con los contactos guardados -->
+                <select id="selectContactoEvento">
+                    <option value="">Sin contacto</option>
+                </select>
+
+                <button type="submit" id="botonGuardarEvento">Guardar Evento</button>
+            </form>
+
+            <!-- Contenedor vacío donde JS va a dibujar la lista de eventos -->
+            <div id="listaEventos"></div>
+        </section>
+
+    </main>
+
+    <!-- Enlace al archivo de JavaScript, al final para que cargue el HTML primero -->
+    <script src="app.js"></script>
+</body>
+</html>

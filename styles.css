@@ -1,0 +1,202 @@
+/* Importamos las fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap');
+
+/* 
+  :root - Definimos variables CSS para toda la paleta.
+  Así podés cambiar un color en un solo lugar.
+*/
+:root {
+  --color-principal: #2F80ED; /* Azul principal para botones y detalles */
+  --color-fondo-pagina: #F5F7FB; /* Gris muy claro para el fondo general */
+  --color-fondo-tarjeta: #EAF2FF; /* Celeste claro para fondos de tarjetas */
+  --color-texto-principal: #2D3748; /* Gris oscuro para texto, más suave que negro puro */
+  --color-texto-secundario: #718096; /* Gris medio para descripciones */
+  --color-borde: #E2E8F0; /* Borde sutil */
+  --color-blanco: #FFFFFF;
+  --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra para efecto tarjeta */
+  --radio-borde: 12px; /* Redondeado estándar */
+}
+
+/* 
+  Reseteo básico y tipografía base.
+  Mobile first: empezamos pensando en celular.
+*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-fondo-pagina);
+  color: var(--color-texto-principal);
+  /* Inter para texto, con system-ui como respaldo si no hay internet */
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  padding: 16px;
+}
+
+/* Poppins para todos los títulos, con respaldo */
+h1, h2, h3 {
+  font-family: "Poppins", system-ui, sans-serif;
+}
+
+/* 
+  Encabezado: título y acciones.
+  En móvil, todo en columna.
+*/
+#encabezadoPrincipal {
+  background-color: var(--color-blanco);
+  padding: 20px;
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra-suave);
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#tituloApp::before {
+  content: "📒 "; /* Ícono con emoji, sin librerías */
+}
+
+#contenedorAcciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#buscadorGeneral {
+  flex-grow: 1; /* Ocupa todo el espacio disponible */
+  padding: 10px 14px;
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+}
+
+/* 
+  Botones generales con efecto hover.
+  Cambio de color y leve elevación.
+*/
+button {
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease; /* Animación suave */
+}
+
+button:hover {
+  background-color: #2568C5; /* Azul un poco más oscuro */
+  transform: translateY(-2px); /* Se eleva 2px */
+  box-shadow: 0 6px 14px rgba(47, 128, 237, 0.3);
+}
+
+#botonExportar::before { content: "📤 "; }
+#botonImportar::before { content: "📥 "; }
+
+/* 
+  Contenido principal: las dos secciones.
+  En móvil, una columna.
+*/
+#contenidoPrincipal {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* 
+  Estilo de pestañas para las secciones.
+  JS va a agregar/quitar la clase .pestaniaActiva
+*/
+#seccionContactos, #seccionEventos {
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra-suave);
+  padding: 20px;
+  border-top: 4px solid transparent; /* Borde para marcar la pestaña activa */
+  opacity: 0.7; /* Pestaña inactiva se ve más apagada */
+  transition: all 0.2s ease;
+}
+
+/* Cuando la sección está activa, se nota */
+#seccionContactos.pestaniaActiva, #seccionEventos.pestaniaActiva {
+  border-top-color: var(--color-principal);
+  opacity: 1;
+}
+
+#seccionContactos h2::before { content: "👤 "; }
+#seccionEventos h2::before { content: "📅 "; }
+
+/* 
+  Formularios como tarjetas.
+*/
+form {
+  background-color: var(--color-fondo-tarjeta);
+  padding: 16px;
+  border-radius: var(--radio-borde);
+  margin: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+
+input, select, textarea {
+  padding: 10px;
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+#botonGuardarContacto::before { content: "💾 "; }
+#botonGuardarEvento::before { content: "➕ "; }
+
+/* 
+  Contenedores de listas.
+  Las tarjetas individuales las va a crear JS con la clase .tarjeta.
+  Acá dejamos el estilo listo.
+*/
+#listaContactos, #listaEventos {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+/* Clase que usará app.js para cada contacto/evento */
+.tarjeta {
+  background-color: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-left: 4px solid var(--color-principal); /* Detalle de color */
+  padding: 14px;
+  border-radius: 10px;
+  box-shadow: var(--sombra-suave);
+}
+
+/*
+  Media Query: Desde 768px (tablet/PC), dos columnas.
+*/
+@media (min-width: 768px) {
+  #encabezadoPrincipal {
+    flex-direction: row; /* Título a la izquierda, acciones a la derecha */
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #contenidoPrincipal {
+    flex-direction: row; /* Contactos y Eventos lado a lado */
+    align-items: flex-start;
+  }
+
+  #seccionContactos, #seccionEventos {
+    flex: 1; /* Cada sección ocupa el 50% */
+  }
+}
